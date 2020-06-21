@@ -9,31 +9,40 @@
 import SwiftUI
 
 struct SearchView: View {
-    
-    @State var text: String
+    @State private var text: String = ""
+    @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
-        HStack {
-            TextField("City", text: $text).modifier(ClearButton(text: $text))//.modifier(ClearButton(text: $text))
-                .multilineTextAlignment(.center)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            Button(action: {
-                // Search Button
-            }) {
-                Image(systemName: "magnifyingglass")
-                    .resizable()
-                    .foregroundColor(.black)
-                    .frame(width: 30, height: 30)
-                
+        VStack {
+            HStack {
+                Button(action: {
+                    self.locationManager.requestNewLocation()
+                }) {
+                    Image(systemName: "location.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                }
+                TextField("City", text: $text).modifier(ClearButton(text: $text))
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button(action: {
+                    // Search Button
+                }) {
+                    Image(systemName: "magnifyingglass")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                }
+                .frame(width: 50, height: 50)
             }
-            .frame(width: 50, height: 50)
+            .padding()
+            
+//            Text("Latitude: \(locationManager.lat ?? "")")
+//            Text("Longitude: \(locationManager.lon ?? "")")
         }
-        .padding()
     }
 }
 
 struct ClearButton: ViewModifier {
-    
     @Binding var text: String
     
     public func body(content: Content) -> some View {
@@ -55,7 +64,7 @@ struct ClearButton: ViewModifier {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(text: "")
+        SearchView()
             .previewLayout(.sizeThatFits)
     }
 }
