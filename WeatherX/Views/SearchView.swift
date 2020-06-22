@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var text: String = ""
+    @State var text: String = ""
     @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
