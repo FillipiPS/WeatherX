@@ -14,18 +14,17 @@ struct ContentView: View {
         VStack() {
             Text("\(weatherManager.resultWeather?.cityName ?? "Los Angeles")")
                 .font(.system(size: 40))
-            Spacer()
+            Text("\(weatherManager.resultWeather?.descriptionUppercase ?? "Light intensity drizzle rain")")
+                .font(.system(size: 20))
+                .padding()
             HStack {
                 Image(systemName: weatherManager.resultWeather?.conditionName ?? "cloud.sun.bolt")
                     .resizable()
                     .frame(width: 100, height: 100)
-                Text("\(weatherManager.resultWeather?.descriptionUppercase ?? "light intensity drizzle rain")")
-                    .font(.system(size: 25))
-                .frame(width: 160)
+                Text("\(weatherManager.resultWeather?.temperatureString ?? "22")ºC")
+                    .font(.system(size: 80))
+                    .padding()
             }
-            Spacer()
-            Text("\(weatherManager.resultWeather?.temperatureString ?? "22")ºC")
-                .font(.system(size: 100))
             Spacer()
         }
     }
