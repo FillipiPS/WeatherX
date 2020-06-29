@@ -41,6 +41,8 @@ struct WeatherModel {
             return "cloud.moon.rain"
         case "11d":
             return "cloud.bolt.rain"
+        case "11n":
+            return "cloud.bolt.rain"
         case "13d":
             return "snow"
         case "13n":
