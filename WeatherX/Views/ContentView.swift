@@ -9,17 +9,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var weatherManager = WeatherManager()
     var body: some View {
         VStack(alignment: .trailing) {
             SearchView()
             Spacer()
             VStack(alignment: .trailing) {
-                Image(systemName: "cloud.sun.bolt")
+                Image(systemName: weatherManager.resultWeather?.conditionName ?? "cloud.sun.bolt")
                     .resizable()
                     .frame(width: 100, height: 100)
-                Text("22°C")
+                Text("\(weatherManager.resultWeather?.temperatureString ?? "-")ºC")
                     .font(.system(size: 100))
-                Text("City")
+                Text("\(weatherManager.resultWeather?.cityName ?? "-")")
                     .font(.system(size: 40))
             }
             .padding()

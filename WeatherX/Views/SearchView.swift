@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SearchView: View {
     @State var text: String = ""
-    @ObservedObject var weatherManager = WeatherManager()
     
     var body: some View {
         VStack {
@@ -35,11 +34,6 @@ struct SearchView: View {
                 .frame(width: 50, height: 50)
             }
             .padding()
-            
-            Text("Temperature: \(weatherManager.resultWeather?.temperatureString ?? "")ºC")
-            Text("City: \(weatherManager.resultWeather?.cityName ?? "")")
-        }.onAppear {
-            //
         }
     }
 }
