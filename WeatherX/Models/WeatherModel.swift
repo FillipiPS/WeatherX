@@ -10,11 +10,16 @@ import Foundation
 
 struct WeatherModel {
     let iconWeather: String
+    let conditionDescription: String
     let cityName: String
     let temperature: Double
     
     var temperatureString: String {
         return String(format: "%.0f", temperature.rounded(toPlaces: 2))
+    }
+    
+    var descriptionUppercase: String {
+        return conditionDescription.capitalizingFirstLetter()
     }
     
     var conditionName: String {
@@ -56,6 +61,16 @@ struct WeatherModel {
         }
     }
     
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }
 
 extension Double {

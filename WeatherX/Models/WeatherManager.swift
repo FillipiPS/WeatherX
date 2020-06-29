@@ -66,9 +66,11 @@ class WeatherManager: NSObject, ObservableObject {
     
     func parseJSON(from weatherData: WeatherData) -> WeatherModel? {
         let icon = weatherData.weather[0].icon
+        let description = weatherData.weather[0].description
         let temp = weatherData.main.temp
         let name = weatherData.name
-        let weather = WeatherModel(iconWeather: icon, cityName: name, temperature: temp)
+        
+        let weather = WeatherModel(iconWeather: icon, conditionDescription: description, cityName: name, temperature: temp)
         return weather
     }
     
@@ -84,7 +86,6 @@ class WeatherManager: NSObject, ObservableObject {
 
 extension WeatherManager: LocationManagerDelegate {
     func didUpdateLocation(_ locationManager: LocationManager, coordinate: CLLocationCoordinate2D) {
-        print("didUpdateLocation")
         fetchWeather(latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
 }
