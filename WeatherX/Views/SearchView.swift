@@ -10,13 +10,13 @@ import SwiftUI
 
 struct SearchView: View {
     @State var text: String = ""
-    @ObservedObject var locationManager = LocationManager()
+    @ObservedObject var weatherManager = WeatherManager()
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
-                    self.locationManager.requestNewLocation()
+                    
                 }) {
                     Image(systemName: "location.circle.fill")
                         .resizable()
@@ -36,8 +36,10 @@ struct SearchView: View {
             }
             .padding()
             
-//            Text("Latitude: \(locationManager.lat ?? "")")
-//            Text("Longitude: \(locationManager.lon ?? "")")
+            Text("Temperature: \(weatherManager.resultWeather?.temperatureString ?? "")ºC")
+            Text("City: \(weatherManager.resultWeather?.cityName ?? "")")
+        }.onAppear {
+            //
         }
     }
 }

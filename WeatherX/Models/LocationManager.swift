@@ -8,34 +8,37 @@
 
 import Foundation
 import CoreLocation
+import Combine
 
-class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
+protocol LocationManagerDelegate {
+   func didUpdateLocation(_ locationManager: LocationManager, coordinate: CLLocationCoordinate2D)
+}
+
+class LocationManager: NSObject {
     private let locationManager = CLLocationManager()
-    @Published var lat: String?
-    @Published var lon: String?
+    var delegate: LocationManagerDelegate?
 
     override init() {
-      super.init()
-      locationManager.delegate = self
-      locationManager.requestWhenInUseAuthorization()
-      locationManager.requestLocation()
+        super.init()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
-    
+
     func requestNewLocation() {
-        locationManager.requestLocation()
+        locationManager.startUpdatingLocation()
     }
-    
-    //MARK: - Location Manager Delegate Methods
-    
+}
+
+//MARK: - Location Manager Delegate Methods
+extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
-            
-            lat = String(location.coordinate.latitude)
-            lon = String(location.coordinate.longitude)
+            delegate?.didUpdateLocation(self, coordinate: location.coordinate)
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
