@@ -26,6 +26,22 @@ struct WeatherModel {
         return conditionDescription.capitalizingFirstLetter()
     }
     
+    var feelsLikeTemperatureString: String{
+        return String(format: "%.0f", feelsLikeTemperature.rounded(toPlaces: 2))
+    }
+    
+    var pressureString: String {
+        return String(pressure)
+    }
+    
+    var humidityString: String {
+        return String(humidity)
+    }
+    
+    var windSpeedString: String {
+        return String(windSpeed)
+    }
+    
     var conditionName: String {
         switch iconWeather {
         case "01d":

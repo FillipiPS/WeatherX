@@ -26,6 +26,12 @@ struct ContentView: View {
                     .padding()
             }
             Spacer()
+            DailyListView(
+                feelsLike: weatherManager.resultWeather?.feelsLikeTemperatureString,
+                humity: weatherManager.resultWeather?.humidityString,
+                windSpeed: weatherManager.resultWeather?.windSpeedString,
+                pressure: weatherManager.resultWeather?.pressureString
+            )
         }
     }
     
