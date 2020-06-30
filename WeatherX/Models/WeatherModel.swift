@@ -42,7 +42,7 @@ struct WeatherModel {
         return String(windSpeed)
     }
     
-    var conditionName: String {
+    var iconSymbol: String {
         switch iconWeather {
         case "01d":
             return "sun.max"
