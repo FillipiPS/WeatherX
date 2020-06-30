@@ -23,7 +23,7 @@ struct HeaderInfoView: View {
                 .font(.system(size: 20))
                 .padding()
             HStack {
-                Image(systemName: imageWeather ?? "")
+                Image(systemName: imageWeather ?? "cloud.sun.rain")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
