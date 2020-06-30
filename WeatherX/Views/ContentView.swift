@@ -20,6 +20,7 @@ struct ContentView: View {
             HStack {
                 Image(systemName: weatherManager.resultWeather?.conditionName ?? "cloud.sun.bolt")
                     .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
                 Text("\(weatherManager.resultWeather?.temperatureString ?? "22")ºC")
                     .font(.system(size: 80))
