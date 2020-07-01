@@ -18,6 +18,10 @@ struct WeatherModel {
     let humidity: Int
     let windSpeed: Double
     
+    var iconSymbol: String {
+        return weatherProperty.0
+    }
+    
     var temperatureString: String {
         return String(format: "%.0f", temperature.rounded(toPlaces: 2))
     }
@@ -26,7 +30,7 @@ struct WeatherModel {
         return conditionDescription.capitalizingFirstLetter()
     }
     
-    var feelsLikeTemperatureString: String{
+    var feelsLikeTemperatureString: String {
         return String(format: "%.0f", feelsLikeTemperature.rounded(toPlaces: 2))
     }
     
@@ -42,42 +46,57 @@ struct WeatherModel {
         return String(windSpeed)
     }
     
-    var iconSymbol: String {
+    enum ColorSky {
+        case dayClear
+        case nightClear
+        case dayCloudy
+        case nightCloudy
+        case dayMist
+        case nightMist
+        case heavyRain
+        case dayRain
+        case nightRain
+        case thunderstorm
+        case snow
+        case windy
+    }
+    
+    var weatherProperty: (String, ColorSky) {
         switch iconWeather {
         case "01d":
-            return "sun.max"
+            return ("sun.max", .dayClear)
         case "01n":
-            return "moon"
+            return ("moon", .nightClear)
         case "02d":
-            return "cloud.sun"
+            return ("cloud.sun", .dayCloudy)
         case "02n":
-            return "cloud.moon"
+            return ("cloud.moon", .nightCloudy)
         case "04d":
-            return "smoke"
+            return ("smoke", .dayMist)
         case "04n":
-            return "smoke"
+            return ("smoke", .nightMist)
         case "09d":
-            return "cloud.heavyrain"
+            return ("cloud.heavyrain", .heavyRain)
         case "09n":
-            return "cloud.heavyrain"
+            return ("cloud.heavyrain", .heavyRain)
         case "10d":
-            return "cloud.sun.rain"
+            return ("cloud.sun.rain", .dayRain)
         case "10n":
-            return "cloud.moon.rain"
+            return ("cloud.moon.rain", .nightRain)
         case "11d":
-            return "cloud.bolt.rain"
+            return ("cloud.bolt.rain", .thunderstorm)
         case "11n":
-            return "cloud.bolt.rain"
+            return ("cloud.bolt.rain", .thunderstorm)
         case "13d":
-            return "snow"
+            return ("snow", .snow)
         case "13n":
-            return "snow"
+            return ("snow", .snow)
         case "50d":
-            return "wind.snow"
+            return ("wind.snow", .windy)
         case "50n":
-            return "wind.snow"
+            return ("wind.snow", .windy)
         default:
-            return "tornado"
+            return ("tornado", .windy)
         }
     }
     
