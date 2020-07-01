@@ -71,7 +71,7 @@ class WeatherManager: NSObject, ObservableObject {
         let name = weatherData.name
         let feelsLike = weatherData.main.feels_like
         let pressure = weatherData.main.pressure
-        let humity = weatherData.main.pressure
+        let humity = weatherData.main.humidity
         let speed = weatherData.wind.speed
         
         let weather = WeatherModel(iconWeather: icon, conditionDescription: description, cityName: name, temperature: temp, feelsLikeTemperature: feelsLike, pressure: pressure, humidity: humity, windSpeed: speed)
