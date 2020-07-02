@@ -31,7 +31,7 @@ struct ContentView: View {
                 )
                     .opacity(flipped ? 1.0 : 0.0)
             }
-            .frame(width: 300, height: 300)
+            .frame(width: 350, height: 350)
             .background(Color(.cyan))
             .cornerRadius(50)
             .modifier(FlipEffect(flipped: $flipped, axis: (x: 0, y: 1), angle: animate3d ? 180 : 0))
