@@ -71,6 +71,10 @@ struct WeatherModel {
             return ("cloud.sun", .dayCloudy)
         case "02n":
             return ("cloud.moon", .nightCloudy)
+        case "03d":
+            return ("cloud", .dayCloudy)
+        case "03n":
+            return ("cloud", .nightCloudy)
         case "04d":
             return ("smoke", .dayMist)
         case "04n":
