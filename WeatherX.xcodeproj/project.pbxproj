@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B85198524AFD68A00124A16 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85198424AFD68A00124A16 /* CardView.swift */; };
 		5B9BC54124A077F300585C1C /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B9BC54024A077F300585C1C /* Secrets.plist */; };
 		5B9BC54424A0787200585C1C /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9BC54324A0787200585C1C /* WeatherManager.swift */; };
 		5B9BC54624A07DAB00585C1C /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9BC54524A07DAB00585C1C /* WeatherData.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B85198424AFD68A00124A16 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		5B9BC54024A077F300585C1C /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		5B9BC54324A0787200585C1C /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		5B9BC54524A07DAB00585C1C /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				5BFD7296249F1EEC0044FA72 /* ContentView.swift */,
+				5B85198424AFD68A00124A16 /* CardView.swift */,
 				5BF318F824ABF05C0045342F /* FrontCardView.swift */,
 				5BA1DD2624AAB93000407C5C /* BackCardView.swift */,
 				5BFD72A7249F27C00044FA72 /* SearchView.swift */,
@@ -200,6 +203,7 @@
 				5BCEFB1224A01C0100A8C8A0 /* LocationManager.swift in Sources */,
 				5BFD7295249F1EEC0044FA72 /* SceneDelegate.swift in Sources */,
 				5B9BC54824A07ED000585C1C /* WeatherModel.swift in Sources */,
+				5B85198524AFD68A00124A16 /* CardView.swift in Sources */,
 				5BFD7297249F1EEC0044FA72 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
