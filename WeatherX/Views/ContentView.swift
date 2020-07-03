@@ -38,7 +38,7 @@ struct ContentView: View {
             .frame(width: 350, height: 350)
             .background(Color(.cyan))
             .cornerRadius(50)
-// Add Shadow .shadow(radius: 50)
+            .shadow(radius: 50)
             .modifier(FlipEffect(flipped: $flipped, axis: (x: 0, y: 1), angle: animate3d ? 180 : 0))
             .onTapGesture {
                 withAnimation(Animation.linear(duration: 0.6)) {
