@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct HeaderInfoView: View {
+struct FrontCardView: View {
     var cityName: String?
     var descriptionWeather: String?
     var imageWeather: String?
@@ -33,12 +33,13 @@ struct HeaderInfoView: View {
                     .padding()
             }
         }
+        .frame(width: 350, height: 350)
     }
 }
 
-struct HeaderInfoView_Previews: PreviewProvider {
+struct FrontCardView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderInfoView(cityName: "Los Angeles", descriptionWeather: "Rain", imageWeather: "cloud.heavyrain", temperature: "22")
-        .previewLayout(.sizeThatFits)
+        FrontCardView(cityName: "Los Angeles", descriptionWeather: "Rain", imageWeather: "cloud.heavyrain", temperature: "22")
+            .previewLayout(.sizeThatFits)
     }
 }
