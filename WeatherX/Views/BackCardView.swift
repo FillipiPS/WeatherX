@@ -15,6 +15,7 @@ struct BackCardView: View {
     var feelsLike: String?
     var humity: String?
     var windSpeed: String?
+    var direction: String?
     var pressure: String?
     
     var body: some View {
@@ -37,7 +38,7 @@ struct BackCardView: View {
             Divider()
             InfoSectionView(title: "HUMITY", info: "\(humity ?? "-")%")
             Divider()
-            InfoSectionView(title: "WIND SPEED", info: "\(windSpeed ?? "-")Km/h")
+            InfoSectionView(title: "WIND SPEED", info: "\(direction ?? "") \(windSpeed ?? "-")Km/h")
             Divider()
             InfoSectionView(title: "PRESSURE", info: "\(pressure ?? "-")HpA")
         }
@@ -52,7 +53,7 @@ struct BackCardView: View {
 
 struct BackCardView_Previews: PreviewProvider {
     static var previews: some View {
-        BackCardView(cityName: "Los Angeles", temperature: "22", imageWeather: "cloud.sun.rain", feelsLike: "12", humity: "99", windSpeed: "22", pressure: "1012")
+        BackCardView(cityName: "Los Angeles", temperature: "22", imageWeather: "cloud.sun.rain", feelsLike: "12", humity: "99", windSpeed: "22", direction: "N", pressure: "1012")
             .previewLayout(.sizeThatFits)
     }
 }

@@ -29,6 +29,7 @@ struct CardView: View {
                 feelsLike: weather.resultWeather?.feelsLikeTemperatureString,
                 humity: weather.resultWeather?.humidityString,
                 windSpeed: weather.resultWeather?.windSpeedString,
+                direction: weather.resultWeather?.windDirection,
                 pressure: weather.resultWeather?.pressureString
                 
             )

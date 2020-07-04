@@ -24,6 +24,7 @@ struct Main: Codable {
 
 struct Wind: Codable {
     let speed: Double
+    let deg: Int
 }
 
 struct Weather: Codable {

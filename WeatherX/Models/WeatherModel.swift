@@ -17,6 +17,7 @@ struct WeatherModel {
     let pressure: Int
     let humidity: Int
     let windSpeed: Double
+    let direction: Int
     
     var iconSymbol: String {
         return weatherProperty.0
@@ -44,6 +45,45 @@ struct WeatherModel {
     
     var windSpeedString: String {
         return String(windSpeed)
+    }
+    
+    var windDirection: String {
+        switch direction {
+        case 0...22:
+            return "NNE"
+        case 23...45:
+            return "NE"
+        case 46...67:
+            return "ENE"
+        case 47...90:
+            return "E"
+        case 91...112:
+            return "ESE"
+        case 113...135:
+            return "SE"
+        case 136...157:
+            return "SSE"
+        case 158...180:
+            return "S"
+        case 181...202:
+            return "SSW"
+        case 203...225:
+            return "SW"
+        case 226...247:
+            return "WSW"
+        case 248...270:
+            return "W"
+        case 271...292:
+            return "WNW"
+        case 293...315:
+            return "NW"
+        case 316...337:
+            return "NNW"
+        case 338...360:
+            return "N"
+        default:
+            return "N"
+        }
     }
     
     enum ColorSky {
