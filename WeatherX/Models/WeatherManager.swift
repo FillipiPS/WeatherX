@@ -11,7 +11,7 @@ import CoreLocation
 
 class WeatherManager: NSObject, ObservableObject {
     var locationManager = LocationManager()
-    private var weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=(apikey)&units=metric"
+    private var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=(apikey)&units=metric"
     
     @Published var resultWeather: WeatherModel?
     
@@ -22,16 +22,16 @@ class WeatherManager: NSObject, ObservableObject {
     
     func fetchWeather(cityName: String) {
         if let apiKey = readPList() {
-            weatherURL = weatherURL.replacingOccurrences(of: "(apikey)", with: apiKey)
-            let urlString = "\(weatherURL)&q=\(cityName.verifySpacesAndPercentEncoding())"
+            currentWeatherURL = currentWeatherURL.replacingOccurrences(of: "(apikey)", with: apiKey)
+            let urlString = "\(currentWeatherURL)&q=\(cityName.verifySpacesAndPercentEncoding())"
             performRequest(with: urlString)
         }
     }
     
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         if let apiKey = readPList() {
-            weatherURL = weatherURL.replacingOccurrences(of: "(apikey)", with: apiKey)
-            let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+            currentWeatherURL = currentWeatherURL.replacingOccurrences(of: "(apikey)", with: apiKey)
+            let urlString = "\(currentWeatherURL)&lat=\(latitude)&lon=\(longitude)"
             performRequest(with: urlString)
         }
     }
