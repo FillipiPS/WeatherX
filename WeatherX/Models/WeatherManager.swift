@@ -10,9 +10,28 @@ import Foundation
 import CoreLocation
 
 class WeatherManager: NSObject, ObservableObject {
-    var locationManager = LocationManager()
-    private var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=(apikey)&units=metric"
     
+    enum Forecast {
+        static let currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=(apikey)&units=metric"
+        static let weekWeatherURL = "https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,current&appid=(apikey)&units=metric"
+        
+        case daily(city: String?, lat: CLLocationDegrees?, lon: CLLocationDegrees?)
+        case weekly(lat: CLLocationDegrees, lon: CLLocationDegrees)
+        
+        var url: String {
+            switch self {
+            case .daily(city: let cityName, let latitude, let longitude):
+                if let city = cityName {
+                    return "\(Forecast.currentWeatherURL)&q=\(city)"
+                }
+                return "\(Forecast.currentWeatherURL)&lat=\(latitude!)&lon=\(longitude!)"
+            case .weekly(lat: let latitude, lon: let longitude):
+                return "\(Forecast.weekWeatherURL)&lat=\(latitude)&lon=\(longitude)"
+            }
+        }
+    }
+    
+    var locationManager = LocationManager()
     @Published var resultWeather: WeatherModel?
     
     override init() {
@@ -22,16 +41,16 @@ class WeatherManager: NSObject, ObservableObject {
     
     func fetchWeather(cityName: String) {
         if let apiKey = readPList() {
-            currentWeatherURL = currentWeatherURL.replacingOccurrences(of: "(apikey)", with: apiKey)
-            let urlString = "\(currentWeatherURL)&q=\(cityName.verifySpacesAndPercentEncoding())"
+            var urlString = Forecast.daily(city: cityName.verifySpacesAndPercentEncoding(), lat: nil, lon: nil).url
+            urlString = urlString.replacingOccurrences(of: "(apikey)", with: apiKey)
             performRequest(with: urlString)
         }
     }
     
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         if let apiKey = readPList() {
-            currentWeatherURL = currentWeatherURL.replacingOccurrences(of: "(apikey)", with: apiKey)
-            let urlString = "\(currentWeatherURL)&lat=\(latitude)&lon=\(longitude)"
+            var urlString = Forecast.daily(city: nil, lat: latitude, lon: longitude).url
+            urlString = urlString.replacingOccurrences(of: "(apikey)", with: apiKey)
             performRequest(with: urlString)
         }
     }
